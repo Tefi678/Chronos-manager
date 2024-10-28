@@ -5,7 +5,6 @@
 
 ListaEnlazada::ListaEnlazada() : cabeza(nullptr) {}
 
-// Función para agregar una tarea
 void ListaEnlazada::agregarTarea(Tarea tarea) {
     Nodo* nuevoNodo = new Nodo(tarea);
     if (cabeza == nullptr) {
@@ -19,7 +18,6 @@ void ListaEnlazada::agregarTarea(Tarea tarea) {
     }
 }
 
-// Función para mostrar todas las tareas
 void ListaEnlazada::mostrarTareas() const {
     if (cabeza == nullptr) {
         std::cout << "La lista está vacía." << std::endl;
@@ -34,7 +32,6 @@ void ListaEnlazada::mostrarTareas() const {
     }
 }
 
-// Función para eliminar una tarea por título
 void ListaEnlazada::eliminarTarea(std::string titulo) {
     if (cabeza == nullptr) return;
 
@@ -127,7 +124,7 @@ void ListaEnlazada::mostrarTareasActivas() const {
     bool hayActivas = false;
 
     while (actual != nullptr) {
-        if (actual->tarea.isActivo()) {  // Usamos el método `isActivo()`
+        if (actual->tarea.isActivo()) {
             actual->tarea.mostrarTarea();
             std::cout << "-------------------------" << std::endl;
             hayActivas = true;
