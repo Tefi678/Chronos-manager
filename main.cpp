@@ -1,23 +1,29 @@
 #include "ListaEnlazada.h"
 #include <iostream>
 using namespace std;
+
 void menu() {
     cout << "1. Agregar tarea" << endl;
     cout << "2. Mostrar tareas" << endl;
     cout << "3. Eliminar tarea" << endl;
-    cout << "4. Salir" << endl;
+    cout << "4. Buscar tarea" << endl;
+    cout << "5. Ordenar tareas" << endl;
+    cout << "6. Salir" << endl;
     cout << "Elige una opción: ";
 }
+
 int main() {
     ListaEnlazada lista;
     int opcion;
     string titulo, descripcion, tipo, estado;
     bool activo;
     string fechaInicio;
+
     do {
         menu();
         cin >> opcion;
-        cin.ignore();
+        cin.ignore();  
+
         switch (opcion) {
             case 1:
                 cout << "Título: ";
@@ -35,21 +41,36 @@ int main() {
                 getline(cin, fechaInicio);
                 lista.agregarTarea(Tarea(titulo, descripcion, tipo, estado, activo, fechaInicio));
                 break;
+
             case 2:
+                // Mostrar tareas
                 lista.mostrarTareas();
                 break;
+
             case 3:
                 cout << "Título de la tarea a eliminar: ";
                 getline(cin, titulo);
                 lista.eliminarTarea(titulo);
                 break;
+
             case 4:
+                cout << "Título de la tarea a buscar: ";
+                getline(cin, titulo);
+                lista.buscarTarea(titulo);
+                break;
+
+            case 5:
+                lista.ordenarTareas();
+                break;
+
+            case 6:
                 cout << "Saliendo..." << endl;
                 break;
+
             default:
                 cout << "Opción no válida. Inténtalo de nuevo." << endl;
         }
-    } while (opcion != 4);
+    } while (opcion != 6);
 
     return 0;
 }

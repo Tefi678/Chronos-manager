@@ -6,6 +6,10 @@ Tarea::Tarea(string titulo, string descripcion, string tipo, string estado, bool
 
 string Tarea::getTitulo() const { return titulo; }
 
+bool Tarea::isActivo() const {  // Método de acceso para `activo`
+    return activo;
+}
+
 void Tarea::mostrarTarea() const {
     cout << "Título: " << titulo << endl;
     cout << "Descripción: " << descripcion << endl;
