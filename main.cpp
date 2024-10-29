@@ -2,34 +2,59 @@
 #include <iostream>
 using namespace std;
 
-void menu() {
-    cout << "\tMENU CHRONOS MANAGES" << endl;
+void menuPrincipal() {
+    cout << "\n\tMENU CHRONOS MANAGER ADMINISTRADOR DE TAREAS" << endl;
     cout << "1. Agregar tarea" << endl;
     cout << "2. Mostrar tareas" << endl;
-    cout << "3. Eliminar tarea" << endl;
-    cout << "4. Buscar tarea" << endl;
-    cout << "5. Ordenar tareas" << endl;
-    cout << "6. Modificar tarea" << endl;
-    cout << "7. Tarea por posición" << endl;
-    cout << "8. Filtrar tareas activas" << endl;
-    cout << "9. Eliminar todas las tareas" << endl;
-    cout << "10. Filtrar por tipo" << endl;
-    cout << "11. Cantidad de tareas actuales" << endl;
-    cout << "12. Completar tarea" << endl;
-    cout << "13. Salir" << endl;
+    cout << "3. Ordenar tareas" << endl;
+    cout << "4. Filtrar tareas" << endl;
+    cout << "5. Buscar tarea" << endl;
+    cout << "6. Eliminar tarea" << endl;
+    cout << "7. Modificar tarea" << endl;
+    cout << "8. Salir" << endl;
+    cout << "Elige una opción: ";
+}
+
+void menuOrdenar() {
+    cout << "\n\tORDENAR TAREAS" << endl;
+    cout << "1. Ordenar alfabéticamente" << endl;
+    cout << "2. Volver al menú principal" << endl;
+    cout << "Elige una opción: ";
+}
+
+void menuFiltrar() {
+    cout << "\n\tFILTRAR TAREAS" << endl;
+    cout << "1. Mostrar tareas activas" << endl;
+    cout << "2. Filtrar por tipo" << endl;
+    cout << "3. Volver al menú principal" << endl;
+    cout << "Elige una opción: ";
+}
+
+void menuEliminar() {
+    cout << "\n\tELIMINAR TAREAS" << endl;
+    cout << "1. Eliminar por título" << endl;
+    cout << "2. Eliminar todas las tareas" << endl;
+    cout << "3. Volver al menú principal" << endl;
+    cout << "Elige una opción: ";
+}
+
+void menuBuscar() {
+    cout << "\n\tBUSCAR TAREA" << endl;
+    cout << "1. Buscar por título" << endl;
+    cout << "2. Volver al menú principal" << endl;
     cout << "Elige una opción: ";
 }
 
 int main() {
     ListaEnlazada lista;
     int opcion;
-    string titulo1, titulo, descripcion, tipo, estado;
+    string titulo, descripcion, tipo, estado, fechaInicio;
     bool activo;
-    string fechaInicio;
-    cout << "BIENVENIDO A CHRONOS MANAGEr" << endl;
+
+    cout << "BIENVENIDO A CHRONOS MANAGER" << endl;
 
     do {
-        menu();
+        menuPrincipal();
         cin >> opcion;
         cin.ignore();
 
@@ -56,29 +81,98 @@ int main() {
                 break;
 
             case 3:
-                cout << "Título de la tarea a eliminar: ";
-                getline(cin, titulo);
-                lista.eliminarTarea(titulo);
+                do {
+                    menuOrdenar();
+                    cin >> opcion;
+                    cin.ignore();
+
+                    switch (opcion) {
+                        case 1:
+                            lista.ordenarTareas();
+                            break;
+                        case 2:
+                            break;
+                        default:
+                            cout << "Opción no válida." << endl;
+                            break;
+                    }
+                } while (opcion != 2);
                 break;
 
             case 4:
-                cout << "Título de la tarea a buscar: ";
-                getline(cin, titulo);
-                lista.buscarTarea(titulo);
+                do {
+                    menuFiltrar();
+                    cin >> opcion;
+                    cin.ignore();
+
+                    switch (opcion) {
+                        case 1:
+                            lista.mostrarTareasActivas();
+                            break;
+                        case 2:
+                            cout << "Tipo de tarea: ";
+                            getline(cin, tipo);
+                            lista.filtrarPorTipo(tipo);
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            cout << "Opción no válida." << endl;
+                            break;
+                    }
+                } while (opcion != 3);
                 break;
 
             case 5:
-                lista.ordenarTareas();
+                do {
+                    menuBuscar();
+                    cin >> opcion;
+                    cin.ignore();
+
+                    switch (opcion) {
+                        case 1:
+                            cout << "Título de la tarea a buscar: ";
+                            getline(cin, titulo);
+                            lista.buscarTarea(titulo);
+                            break;
+                        case 2:
+                            break;
+                        default:
+                            cout << "Opción no válida." << endl;
+                            break;
+                    }
+                } while (opcion != 2);
                 break;
 
             case 6:
-                cout << "Bye bye :3" << endl;
+                do {
+                    menuEliminar();
+                    cin >> opcion;
+                    cin.ignore();
+
+                    switch (opcion) {
+                        case 1:
+                            cout << "Título de la tarea a eliminar: ";
+                            getline(cin, titulo);
+                            lista.eliminarTarea(titulo);
+                            break;
+                        case 2:
+                            lista.limpiarLista();
+                            cout << "Todas las tareas han sido eliminadas." << endl;
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            cout << "Opción no válida." << endl;
+                            break;
+                    }
+                } while (opcion != 3);
                 break;
-            
+
             case 7:
-                cout << "dame el nombre de la tarea a modificar: ";
-                getline(cin, titulo1);
-                cout << "Título: ";
+                cout << "Título de la tarea a modificar: ";
+                getline(cin, titulo);
+                cout << "Nuevo título: ";
                 getline(cin, titulo);
                 cout << "Descripción: ";
                 getline(cin, descripcion);
@@ -91,18 +185,18 @@ int main() {
                 cin.ignore();
                 cout << "Fecha de inicio: ";
                 getline(cin, fechaInicio);
-                lista.modificarTarea(titulo1, Tarea(titulo, descripcion, tipo, estado, activo, fechaInicio));
+                lista.modificarTarea(titulo, Tarea(titulo, descripcion, tipo, estado, activo, fechaInicio));
                 break;
 
             case 8:
-                lista.mostrarTareasActivas();
+                cout << "Hasta luego." << endl;
                 break;
 
             default:
                 cout << "Opción no válida. Inténtalo de nuevo." << endl;
                 break;
         }
-    } while (opcion != 6);
+    } while (opcion != 8);
 
     return 0;
 }
