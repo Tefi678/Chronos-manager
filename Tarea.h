@@ -18,6 +18,8 @@ public:
     Tarea(string titulo, string descripcion, string tipo, string estado, bool activo, string fechaInicio);
 
     string getTitulo() const;
+    string getTipo() const;
+    void Tarea::setActivo(bool estado);
     bool isActivo() const;
 
     void mostrarTarea() const;

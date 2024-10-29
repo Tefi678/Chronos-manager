@@ -17,6 +17,11 @@ public:
     void ordenarTareas();
     void modificarTarea(std::string titulo, const Tarea& nuevaTarea);
     void mostrarTareasActivas() const;
+    Tarea* obtenerTareaPorIndice(int indice) const;
+    void limpiarLista();
+    void filtrarPorTipo(std::string tipo) const;
+    int contarTareas() const;
+    void completarTarea(std::string titulo);
 };
 
 #endif

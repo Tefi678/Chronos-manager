@@ -5,8 +5,13 @@ Tarea::Tarea(string titulo, string descripcion, string tipo, string estado, bool
     : titulo(titulo), descripcion(descripcion), tipo(tipo), estado(estado), activo(activo), fechaInicio(fechaInicio), fechaFin("") {}
 
 string Tarea::getTitulo() const { return titulo; }
+string Tarea::getTipo() const { return tipo; }
+void Tarea::setActivo(bool estado) {
+    activo = estado;
+}
 
-bool Tarea::isActivo() const {  // Método de acceso para `activo`
+
+bool Tarea::isActivo() const {
     return activo;
 }
 

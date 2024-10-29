@@ -136,3 +136,87 @@ void ListaEnlazada::mostrarTareasActivas() const {
         std::cout << "No hay tareas activas." << std::endl;
     }
 }
+
+Tarea* ListaEnlazada::obtenerTareaPorIndice(int indice) const {
+    if (cabeza == nullptr) {
+        std::cout << "La lista está vacía." << std::endl;
+        return nullptr;
+    }
+
+    Nodo* actual = cabeza;
+    int contador = 0;
+    while (actual != nullptr) {
+        if (contador == indice) {
+            return &actual->tarea;
+        }
+        contador++;
+        actual = actual->siguiente;
+    }
+
+    std::cout << "Índice fuera de rango." << std::endl;
+    return nullptr;
+}
+
+void ListaEnlazada::limpiarLista() {
+    while (cabeza != nullptr) {
+        Nodo* temp = cabeza;
+        cabeza = cabeza->siguiente;
+        delete temp;
+    }
+
+    std::cout << "La lista ha sido limpiada." << std::endl;
+}
+
+void ListaEnlazada::filtrarPorTipo(std::string tipo) const {
+    if (cabeza == nullptr) {
+        std::cout << "La lista está vacía." << std::endl;
+        return;
+    }
+
+    Nodo* actual = cabeza;
+    bool hayCoincidencias = false;
+
+    while (actual != nullptr) {
+        if (actual->tarea.getTipo() == tipo) {
+            actual->tarea.mostrarTarea();
+            std::cout << "-------------------------" << std::endl;
+            hayCoincidencias = true;
+        }
+        actual = actual->siguiente;
+    }
+
+    if (!hayCoincidencias) {
+        std::cout << "No hay tareas de tipo '" << tipo << "'." << std::endl;
+    }
+}
+
+int ListaEnlazada::contarTareas() const {
+    int contador = 0;
+    Nodo* actual = cabeza;
+
+    while (actual != nullptr) {
+        contador++;
+        actual = actual->siguiente;
+    }
+
+    return contador;
+}
+
+void ListaEnlazada::completarTarea(std::string titulo) {
+    if (cabeza == nullptr) {
+        std::cout << "La lista está vacía." << std::endl;
+        return;
+    }
+
+    Nodo* actual = cabeza;
+    while (actual != nullptr) {
+        if (actual->tarea.getTitulo() == titulo) {
+            actual->tarea.setActivo(false);
+            std::cout << "Tarea '" << titulo << "' ha sido marcada como completada." << std::endl;
+            return;
+        }
+        actual = actual->siguiente;
+    }
+
+    std::cout << "Tarea con título '" << titulo << "' no encontrada." << std::endl;
+}
