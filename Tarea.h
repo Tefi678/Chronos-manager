@@ -19,7 +19,7 @@ public:
 
     string getTitulo() const;
     string getTipo() const;
-    void Tarea::setActivo(bool estado);
+    void setActivo(bool estado);
     bool isActivo() const;
 
     void mostrarTarea() const;
