@@ -14,6 +14,7 @@ private:
     string fechaInicio;
     string fechaFin;
 
+
 public:
     Tarea(string titulo, string descripcion, string tipo, string estado, bool activo, string fechaInicio);
 
