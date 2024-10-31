@@ -47,7 +47,7 @@ void menuBuscar() {
 
 int main() {
     ListaEnlazada lista;
-    int opcion;
+    char opcion;
     string titulo, descripcion, tipo, estado, fechaInicio;
     bool activo;
 
@@ -59,7 +59,7 @@ int main() {
         cin.ignore();
 
         switch (opcion) {
-            case 1:
+            case '1':
                 cout << "Título: ";
                 getline(cin, titulo);
                 cout << "Descripción: ";
@@ -76,100 +76,99 @@ int main() {
                 lista.agregarTarea(Tarea(titulo, descripcion, tipo, estado, activo, fechaInicio));
                 break;
 
-            case 2:
+            case '2':
                 lista.mostrarTareas();
                 break;
 
-            case 3:
+            case '3':
                 do {
                     menuOrdenar();
                     cin >> opcion;
                     cin.ignore();
 
                     switch (opcion) {
-                        case 1:
+                        case '1':
                             lista.ordenarTareas();
                             break;
-                        case 2:
+                        case '2':
                             break;
                         default:
                             cout << "Opción no válida." << endl;
                             break;
                     }
-                } while (opcion != 2);
+                } while (opcion != '2');
                 break;
 
-            case 4:
+            case '4':
                 do {
                     menuFiltrar();
                     cin >> opcion;
                     cin.ignore();
 
                     switch (opcion) {
-                        case 1:
+                        case '1':
                             lista.mostrarTareasActivas();
                             break;
-                        case 2:
+                        case '2':
                             cout << "Tipo de tarea: ";
                             getline(cin, tipo);
                             lista.filtrarPorTipo(tipo);
                             break;
-                        case 3:
+                        case '3':
                             break;
                         default:
                             cout << "Opción no válida." << endl;
                             break;
                     }
-                } while (opcion != 3);
+                } while (opcion != '3');
                 break;
-
-            case 5:
+            case '5':
                 do {
                     menuBuscar();
                     cin >> opcion;
                     cin.ignore();
 
                     switch (opcion) {
-                        case 1:
+                        case '1':
                             cout << "Título de la tarea a buscar: ";
                             getline(cin, titulo);
                             lista.buscarTarea(titulo);
                             break;
-                        case 2:
+                        case '2':
                             break;
                         default:
                             cout << "Opción no válida." << endl;
                             break;
                     }
-                } while (opcion != 2);
+                } while (opcion != '2');
                 break;
 
-            case 6:
+            case '6':
                 do {
                     menuEliminar();
                     cin >> opcion;
                     cin.ignore();
 
                     switch (opcion) {
-                        case 1:
+                        case '1':
                             cout << "Título de la tarea a eliminar: ";
                             getline(cin, titulo);
                             lista.eliminarTarea(titulo);
                             break;
-                        case 2:
+                        case '2':
                             lista.limpiarLista();
                             cout << "Todas las tareas han sido eliminadas." << endl;
                             break;
-                        case 3:
+                        case '3':
                             break;
                         default:
                             cout << "Opción no válida." << endl;
                             break;
                     }
-                } while (opcion != 3);
+                } while (opcion != '3');
                 break;
 
-            case 7:
+            case '7':
                 cout << "Título de la tarea a modificar: ";
                 getline(cin, titulo);
                 cout << "Nuevo título: ";
@@ -188,7 +187,7 @@ int main() {
                 lista.modificarTarea(titulo, Tarea(titulo, descripcion, tipo, estado, activo, fechaInicio));
                 break;
 
-            case 8:
+            case '8':
                 cout << "Hasta luego." << endl;
                 break;
 
@@ -196,7 +195,7 @@ int main() {
                 cout << "Opción no válida. Inténtalo de nuevo." << endl;
                 break;
         }
-    } while (opcion != 8);
+    } while (opcion != '8');
 
     return 0;
 }

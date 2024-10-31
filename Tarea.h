@@ -22,7 +22,6 @@ public:
     string getTipo() const;
     void setActivo(bool estado);
     bool isActivo() const;
-
     void mostrarTarea() const;
 };
 
