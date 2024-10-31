@@ -6,6 +6,7 @@ Tarea::Tarea(string titulo, string descripcion, string tipo, string estado, bool
 
 string Tarea::getTitulo() const { return titulo; }
 string Tarea::getTipo() const { return tipo; }
+string Tarea::getFechaInicio() const { return fechaInicio; }
 void Tarea::setActivo(bool estado) {
     activo = estado;
 }

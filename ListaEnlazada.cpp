@@ -95,6 +95,30 @@ void ListaEnlazada::ordenarTareas() {
     std::cout << "Las tareas han sido ordenadas alfabéticamente." << std::endl;
 }
 
+void ListaEnlazada::ordenarPorFecha() {
+    if (cabeza == nullptr || cabeza->siguiente == nullptr) return;
+
+    std::vector<Tarea> tareasVec;
+    Nodo* actual = cabeza;
+
+    while (actual != nullptr) {
+        tareasVec.push_back(actual->tarea);
+        actual = actual->siguiente;
+    }
+
+    std::sort(tareasVec.begin(), tareasVec.end(), [](const Tarea& t1, const Tarea& t2) {
+        return t1.getFechaInicio() < t2.getFechaInicio();
+    });
+
+    actual = cabeza;
+    for (const auto& tarea : tareasVec) {
+        actual->tarea = tarea;
+        actual = actual->siguiente;
+    }
+
+    std::cout << "Las tareas han sido ordenadas por fecha de inicio." << std::endl;
+}
+
 void ListaEnlazada::modificarTarea(std::string titulo, const Tarea& nuevaTarea) {
     if (cabeza == nullptr) {
         std::cout << "La lista está vacía." << std::endl;

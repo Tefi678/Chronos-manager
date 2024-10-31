@@ -20,6 +20,7 @@ public:
 
     string getTitulo() const;
     string getTipo() const;
+    string getFechaInicio() const;
     void setActivo(bool estado);
     bool isActivo() const;
     void mostrarTarea() const;

@@ -15,6 +15,7 @@ public:
     void eliminarTarea(std::string titulo);
     void buscarTarea(std::string titulo) const;
     void ordenarTareas();
+    void ordenarPorFecha();
     void modificarTarea(std::string titulo, const Tarea& nuevaTarea);
     void mostrarTareasActivas() const;
     Tarea* obtenerTareaPorIndice(int indice) const;

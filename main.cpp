@@ -2,6 +2,16 @@
 #include <iostream>
 using namespace std;
 
+char revisar(string x) {
+    char y;
+    if (x.length() != 1) {
+        y='9';
+    } else {
+        y=x[0];
+    }
+    return y;
+}
+
 void menuPrincipal() {
     cout << "\n\tMENU CHRONOS MANAGER ADMINISTRADOR DE TAREAS" << endl;
     cout << "1. Agregar tarea" << endl;
@@ -15,10 +25,19 @@ void menuPrincipal() {
     cout << "Elige una opción: ";
 }
 
+void menuAgregar() {
+    cout << "\n\tAGREGAR TAREAS" << endl;
+    cout << "1. Agregar una tarea" << endl;
+    cout << "2. Agregar varias tareas" << endl;
+    cout << "3. Volver al menú principal" << endl;
+    cout << "Elige una opción: ";
+}
+
 void menuOrdenar() {
     cout << "\n\tORDENAR TAREAS" << endl;
     cout << "1. Ordenar alfabéticamente" << endl;
-    cout << "2. Volver al menú principal" << endl;
+    cout << "2. Ordenar por fecha de creación" << endl;
+    cout << "3. Volver al menú principal" << endl;
     cout << "Elige una opción: ";
 }
 
@@ -48,32 +67,72 @@ void menuBuscar() {
 int main() {
     ListaEnlazada lista;
     char opcion;
-    string titulo, descripcion, tipo, estado, fechaInicio;
+    string x, titulo, descripcion, tipo, estado, fechaInicio;
     bool activo;
 
     cout << "BIENVENIDO A CHRONOS MANAGER" << endl;
 
     do {
         menuPrincipal();
-        cin >> opcion;
+        cin >> x;
+        opcion=revisar(x);
         cin.ignore();
 
         switch (opcion) {
             case '1':
-                cout << "Título: ";
-                getline(cin, titulo);
-                cout << "Descripción: ";
-                getline(cin, descripcion);
-                cout << "Tipo: ";
-                getline(cin, tipo);
-                cout << "Estado: ";
-                getline(cin, estado);
-                cout << "Activo (1 para Sí, 0 para No): ";
-                cin >> activo;
-                cin.ignore();
-                cout << "Fecha de inicio: ";
-                getline(cin, fechaInicio);
-                lista.agregarTarea(Tarea(titulo, descripcion, tipo, estado, activo, fechaInicio));
+                do {
+                    menuAgregar();
+                    cin >> x;
+                    opcion=revisar(x);
+                    cin.ignore();
+                    switch (opcion) {
+                        case '1':
+                            cout << "Título: ";
+                            getline(cin, titulo);
+                            cout << "Descripción: ";
+                            getline(cin, descripcion);
+                            cout << "Tipo: ";
+                            getline(cin, tipo);
+                            cout << "Estado: ";
+                            getline(cin, estado);
+                            cout << "Activo (1 para Sí, 0 para No): ";
+                            cin >> activo;
+                            cin.ignore();
+                            cout << "Fecha de inicio: ";
+                            getline(cin, fechaInicio);
+                            lista.agregarTarea(Tarea(titulo, descripcion, tipo, estado, activo, fechaInicio));
+                            break;
+                        case '2':
+                            int z;
+                            cout << "cuantas?: ";
+                            cin >> z;
+                            while (z>0) {
+                                cout << "Título: ";
+                                getline(cin, titulo);
+                                cout << "Descripción: ";
+                                getline(cin, descripcion);
+                                cout << "Tipo: ";
+                                getline(cin, tipo);
+                                cout << "Estado: ";
+                                getline(cin, estado);
+                                cout << "Activo (1 para Sí, 0 para No): ";
+                                cin >> activo;
+                                cin.ignore();
+                                cout << "Fecha de inicio: ";
+                                getline(cin, fechaInicio);
+                                lista.agregarTarea(Tarea(titulo, descripcion, tipo, estado, activo, fechaInicio));
+                                z--;
+                            }
+                            break;
+                        case '3':
+
+                            break;
+                        default:
+                            cout << "Opción no válida." << endl;
+                            break;
+                        }
+                    } while (opcion != '3');
+                    break;
                 break;
 
             case '2':
@@ -83,7 +142,8 @@ int main() {
             case '3':
                 do {
                     menuOrdenar();
-                    cin >> opcion;
+                    cin >> x;
+                    opcion=revisar(x);
                     cin.ignore();
 
                     switch (opcion) {
@@ -91,18 +151,22 @@ int main() {
                             lista.ordenarTareas();
                             break;
                         case '2':
+                            lista.ordenarPorFecha();
+                            break;
+                        case '3':
                             break;
                         default:
                             cout << "Opción no válida." << endl;
                             break;
                     }
-                } while (opcion != '2');
+                } while (opcion != '3');
                 break;
 
             case '4':
                 do {
                     menuFiltrar();
-                    cin >> opcion;
+                    cin >> x;
+                    opcion=revisar(x);
                     cin.ignore();
 
                     switch (opcion) {
@@ -115,6 +179,7 @@ int main() {
                             lista.filtrarPorTipo(tipo);
                             break;
                         case '3':
+
                             break;
                         default:
                             cout << "Opción no válida." << endl;
@@ -125,7 +190,8 @@ int main() {
             case '5':
                 do {
                     menuBuscar();
-                    cin >> opcion;
+                    cin >> x;
+                    opcion=revisar(x);
                     cin.ignore();
 
                     switch (opcion) {
@@ -146,7 +212,8 @@ int main() {
             case '6':
                 do {
                     menuEliminar();
-                    cin >> opcion;
+                    cin >> x;
+                    opcion=revisar(x);
                     cin.ignore();
 
                     switch (opcion) {
