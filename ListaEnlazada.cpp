@@ -244,3 +244,4 @@ void ListaEnlazada::completarTarea(std::string titulo) {
 
     std::cout << "Tarea con título '" << titulo << "' no encontrada." << std::endl;
 }
+

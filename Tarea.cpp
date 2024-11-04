@@ -21,7 +21,6 @@ void Tarea::mostrarTarea() const {
     cout << "Descripción: " << descripcion << endl;
     cout << "Tipo: " << tipo << endl;
     cout << "Estado: " << estado << endl;
-    cout << "Activo: " << (activo ? "Sí" : "No") << endl;
+    cout << "Activo: " << (activo ? "Si" : "No") << endl;
     cout << "Fecha de inicio: " << fechaInicio << endl;
-    cout << "Fecha de fin: " << fechaFin << endl;
 }
